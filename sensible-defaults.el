@@ -87,8 +87,8 @@ there's no active region."
 (defun sensible-defaults/flash-screen-instead-of-ringing-bell ()
   (setq visible-bell t))
 
-(defun sensible-defaults/set-default-line-length-to-80 ()
-  (setq-default fill-column 80))
+(defun sensible-defaults/set-default-line-length-to (line-length)
+  (setq-default fill-column line-length))
 
 (defun sensible-defaults/yank-to-point-on-mouse-click ()
   (setq mouse-yank-at-point t))
@@ -114,7 +114,7 @@ there's no active region."
   (sensible-defaults/refresh-buffers-when-files-change)
   (sensible-defaults/show-matching-parens)
   (sensible-defaults/flash-screen-instead-of-ringing-bell)
-  (sensible-defaults/set-default-line-length-to-80)
+  (sensible-defaults/set-default-line-length-to 80)
   (sensible-defaults/yank-to-point-on-mouse-click))
 
 ;; Keybindings:
