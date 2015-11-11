@@ -90,6 +90,9 @@ there's no active region."
 (defun sensible-defaults/set-default-line-length-to (line-length)
   (setq-default fill-column line-length))
 
+(defun sensible-defaults/open-clicked-files-in-same-frame-on-mac ()
+  (setq ns-pop-up-frames nil))
+
 (defun sensible-defaults/yank-to-point-on-mouse-click ()
   (setq mouse-yank-at-point t))
 
@@ -115,6 +118,7 @@ there's no active region."
   (sensible-defaults/show-matching-parens)
   (sensible-defaults/flash-screen-instead-of-ringing-bell)
   (sensible-defaults/set-default-line-length-to 80)
+  (sensible-defaults/open-clicked-files-in-same-frame-on-mac)
   (sensible-defaults/yank-to-point-on-mouse-click))
 
 ;; Keybindings:
