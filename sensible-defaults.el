@@ -34,6 +34,10 @@ there's no active region."
       (setq beg (line-beginning-position) end (line-end-position)))
     (comment-or-uncomment-region beg end)))
 
+(defun sensible-defaults/reset-text-size ()
+  (interactive)
+  (text-scale-set 0))
+
 ;; Settings:
 
 (defun sensible-defaults/open-files-from-home-directory ()
@@ -200,6 +204,7 @@ the line, respectively."
 (defun sensible-defaults/bind-keys-to-change-text-size ()
   "Bind C-+ and C-- to increase and decrease text size,
 respectively."
+  (define-key global-map (kbd "C-)") 'sensible-defaults/reset-text-size)
   (define-key global-map (kbd "C-+") 'text-scale-increase)
   (define-key global-map (kbd "C-=") 'text-scale-increase)
   (define-key global-map (kbd "C-_") 'text-scale-decrease)
