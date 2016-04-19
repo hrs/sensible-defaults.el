@@ -147,9 +147,9 @@ buffer containing that file so they can't get out of sync."
 instead of ringing the terminal bell."
   (setq visible-bell t))
 
-(defun sensible-defaults/set-default-line-length-to (line-length)
+(defun sensible-defaults/set-default-line-length-to (&optional line-length)
   "Set the default line length to LINE-LENGTH."
-  (setq-default fill-column line-length))
+  (setq-default fill-column (or line-length 80)))
 
 (defun sensible-defaults/open-clicked-files-in-same-frame-on-mac ()
   "When you double-click on a file in the Mac Finder open it as a
@@ -162,31 +162,35 @@ frame just for that file."
 insert the text where point is, not where the mouse cursor is."
   (setq mouse-yank-at-point t))
 
-(defun sensible-defaults/use-all-settings ()
-  "Use all of the sensible-defaults settings."
-  (sensible-defaults/open-files-from-home-directory)
-  (sensible-defaults/increase-gc-threshold)
-  (sensible-defaults/backup-to-temp-directory)
-  (sensible-defaults/delete-trailing-whitespace)
-  (sensible-defaults/treat-camelcase-as-separate-words)
-  (sensible-defaults/automatically-follow-symlinks)
-  (sensible-defaults/make-scripts-executable)
-  (sensible-defaults/single-space-after-periods)
-  (sensible-defaults/offer-to-create-parent-directories-on-save)
-  (sensible-defaults/apply-changes-to-highlighted-region)
-  (sensible-defaults/overwrite-selected-text)
-  (sensible-defaults/ensure-that-files-end-with-newline)
-  (sensible-defaults/confirm-closing-emacs)
-  (sensible-defaults/quiet-startup)
-  (sensible-defaults/make-dired-file-sizes-human-readable)
-  (sensible-defaults/shorten-yes-or-no)
-  (sensible-defaults/always-highlight-code)
-  (sensible-defaults/refresh-buffers-when-files-change)
-  (sensible-defaults/show-matching-parens)
-  (sensible-defaults/flash-screen-instead-of-ringing-bell)
-  (sensible-defaults/set-default-line-length-to 80)
-  (sensible-defaults/open-clicked-files-in-same-frame-on-mac)
-  (sensible-defaults/yank-to-point-on-mouse-click))
+(defun sensible-defaults/use-all-settings (&rest exceptions)
+  "Use all of the sensible-defaults settings except EXCEPTIONS"
+  (loop for f in '(
+                   sensible-defaults/open-files-from-home-directory
+                   sensible-defaults/increase-gc-threshold
+                   sensible-defaults/backup-to-temp-directory
+                   sensible-defaults/delete-trailing-whitespace
+                   sensible-defaults/treat-camelcase-as-separate-words
+                   sensible-defaults/automatically-follow-symlinks
+                   sensible-defaults/make-scripts-executable
+                   sensible-defaults/single-space-after-periods
+                   sensible-defaults/offer-to-create-parent-directories-on-save
+                   sensible-defaults/apply-changes-to-highlighted-region
+                   sensible-defaults/overwrite-selected-text
+                   sensible-defaults/ensure-that-files-end-with-newline
+                   sensible-defaults/confirm-closing-emacs
+                   sensible-defaults/quiet-startup
+                   sensible-defaults/make-dired-file-sizes-human-readable
+                   sensible-defaults/shorten-yes-or-no
+                   sensible-defaults/always-highlight-code
+                   sensible-defaults/refresh-buffers-when-files-change
+                   sensible-defaults/show-matching-parens
+                   sensible-defaults/flash-screen-instead-of-ringing-bell
+                   sensible-defaults/set-default-line-length-to
+                   sensible-defaults/open-clicked-files-in-same-frame-on-mac
+                   sensible-defaults/yank-to-point-on-mouse-click
+                   )
+        unless (memq f exceptions)
+        do (funcall f)))
 
 ;; Keybindings:
 
