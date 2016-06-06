@@ -125,7 +125,7 @@ buffers."
   (setq-default dired-listing-switches "-alh"))
 
 (defun sensible-defaults/shorten-yes-or-no ()
-  "Don't as `yes/no?', ask `y/n?'."
+  "Don't ask `yes/no?', ask `y/n?'."
   (fset 'yes-or-no-p 'y-or-n-p))
 
 (defun sensible-defaults/always-highlight-code ()
