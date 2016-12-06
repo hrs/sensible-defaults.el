@@ -1,6 +1,7 @@
-;;; sensible-defaults.el --- Reasonable settings for getting started with Emacs.
+;;; sensible-defaults.el --- Reasonable settings for getting started.
 
 ;; Author: Harry R. Schwartz <hello@harryrschwartz.com>
+;; Version: 1.0.0
 ;; URL: https://github.com/hrs/sensible-defaults.el/sensible-defaults.el
 
 ;; This file is NOT part of GNU Emacs.
@@ -215,3 +216,5 @@ respectively."
   (sensible-defaults/bind-commenting-and-uncommenting)
   (sensible-defaults/bind-home-and-end-keys)
   (sensible-defaults/bind-keys-to-change-text-size))
+
+;;; sensible-defaults.el ends here
