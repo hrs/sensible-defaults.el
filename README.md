@@ -66,3 +66,18 @@ choices, but whatevs, it's easy:
 ```
 
 That's it!
+
+## Non-Default Settings
+
+The `sensible-defaults/backup-to-temp-directory` setting isn't enabled by
+default (i.e., it isn't included in `sensible-defaults/use-all-settings`), since
+it could lead to unexpected data loss in some cases.
+
+If you're the sort of person who doesn't rely much on backups and saves
+reflexively, though, this might be a perfectly fine choice for you.
+
+If you choose to enable it, just call it like any of the other functions:
+
+``` emacs
+(sensible-defaults/backup-to-temp-directory)
+```

@@ -52,16 +52,6 @@ garbage collection. This means GC runs less often, which speeds
 up some operations."
   (setq gc-cons-threshold 20000000))
 
-(defun sensible-defaults/backup-to-temp-directory ()
-  "Store backups and auto-saved files in
-TEMPORARY-FILE-DIRECTORY (which defaults to /tmp on Unix),
-instead of in the same directory as the file. This means we're
-still making backups, but not where they'll get in the way."
-  (setq backup-directory-alist
-        `((".*" . ,temporary-file-directory)))
-  (setq auto-save-file-name-transforms
-        `((".*" ,temporary-file-directory t))))
-
 (defun sensible-defaults/delete-trailing-whitespace ()
   "Call DELETE-TRAILING-WHITESPACE every time a buffer is saved."
   (add-hook 'before-save-hook 'delete-trailing-whitespace))
@@ -167,7 +157,6 @@ insert the text where point is, not where the mouse cursor is."
   "Use all of the sensible-defaults settings."
   (sensible-defaults/open-files-from-home-directory)
   (sensible-defaults/increase-gc-threshold)
-  (sensible-defaults/backup-to-temp-directory)
   (sensible-defaults/delete-trailing-whitespace)
   (sensible-defaults/treat-camelcase-as-separate-words)
   (sensible-defaults/automatically-follow-symlinks)
@@ -216,5 +205,22 @@ respectively."
   (sensible-defaults/bind-commenting-and-uncommenting)
   (sensible-defaults/bind-home-and-end-keys)
   (sensible-defaults/bind-keys-to-change-text-size))
+
+;; Non-default settings:
+
+(defun sensible-defaults/backup-to-temp-directory ()
+  "Store backups and auto-saved files in
+TEMPORARY-FILE-DIRECTORY (which defaults to /tmp on Unix),
+instead of in the same directory as the file. This means we're
+still making backups, but not where they'll get in the way.
+
+WARNING: on most Unix-like systems /tmp is volatile, in-memory
+storage, so your backups won't survive if your computer crashes!
+If you're not willing to take this risk, you shouldn't enable
+this setting."
+  (setq backup-directory-alist
+        `((".*" . ,temporary-file-directory)))
+  (setq auto-save-file-name-transforms
+        `((".*" ,temporary-file-directory t))))
 
 ;;; sensible-defaults.el ends here
