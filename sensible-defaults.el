@@ -23,6 +23,8 @@
 
 ;;; Code:
 
+(provide 'sensible-defaults)
+
 ;; Utility functions:
 
 (defun sensible-defaults/comment-or-uncomment-region-or-line ()
