@@ -28,18 +28,17 @@ Emacs reads its initial configuration from either `~/.emacs.d/init.el` or
 `~/.emacs`. We suggest using a `.emacs.d` directory so you can keep your
 configuration code in more than one file.
 
-Copy `sensible-defaults.el` into your `.emacs.d`. You can also store it in a
-separate directory, if you'd like, or symlink it into your `.emacs.d` directory.
-Symlinking is nice, since you can clone this repo somewhere and pull down new
-changes as they come in!
+Create a directory called `sensible-defaults` containing `sensible-defaults.el`
+(or just clone this repository somewhere).
 
-Load it from your `init.el` with `(load-file "~/.emacs.d/sensible-defaults.el")`
-(or some other path, if you put it somewhere else). This evaluates the file.
-That shouldn't do anything interesting on its own, though, since the file only
-defines functions.
+Add the file to your `load-path` and `require` it in your `init.el`, then browse
+through `sensible-defaults.el` and decide which settings you'd like to enable.
+Call those functions in your `init.el`. That's it!
 
-Browse through `sensible-defaults.el` and decide which settings you'd like to
-enable. Call those functions in your `init.el`. That's it!
+``` emacs
+(add-to-list 'load-path "path/to/sensible-defaults")
+(require 'sensible-defaults)
+```
 
 ## An Example
 
@@ -47,7 +46,9 @@ Suppose you want to use every setting and every keybinding suggested by
 `sensible-defaults`. Your `init.el` should contain the following code:
 
 ```emacs
-(load-file "~/.emacs.d/sensible-defaults.el")
+(add-to-list 'load-path "path/to/sensible-defaults")
+(require 'sensible-defaults)
+
 (sensible-defaults/use-all-settings)
 (sensible-defaults/use-all-keybindings)
 ```
@@ -55,11 +56,13 @@ Suppose you want to use every setting and every keybinding suggested by
 ## A More Selective Example
 
 Maybe you just want to increase the garbage collection threshold, show matching
-parentheses, and bind the Home and End keys correctly. Kind of a weird set of
-choices, but whatevs, it's easy:
+parentheses, and bind the `Home` and `End` keys correctly. Kind of a weird set
+of choices, but whatevs, it's easy:
 
 ```emacs
-(load-file "~/.emacs.d/sensible-defaults.el")
+(add-to-list 'load-path "path/to/sensible-defaults")
+(require 'sensible-defaults)
+
 (sensible-defaults/increase-gc-threshold)
 (sensible-defaults/show-matching-parens)
 (sensible-defaults/bind-home-and-end-keys)
