@@ -223,4 +223,5 @@ this setting."
   (setq auto-save-file-name-transforms
         `((".*" ,temporary-file-directory t))))
 
+(provide 'sensible-defaults)
 ;;; sensible-defaults.el ends here
